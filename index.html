@@ -6,16 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combat Reloaded - Records</title>
     <style>
-        /* General Styles */
+        /* General Styles (Desktop First) */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             background: linear-gradient(to bottom, #2c3e50, #34495e);
             color: #ecf0f1;
-            /* Light text color */
             line-height: 1.6;
             overflow-x: hidden;
-            /* Prevent horizontal scrolling */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #e67e22;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #f39c12;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-top: 25px;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #e74c3c;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 8px;
+        }
+
+        p,
+        a,
+        li,
+        label,
+        button {
+            font-size: 1em;
         }
 
         /* Animations */
@@ -44,36 +84,33 @@
         /* Header & Navigation */
         .navbar {
             background-color: rgba(52, 73, 94, 0.8);
-            /* Semi-transparent navbar */
-            padding: 20px 30px;
+            padding: 15px 20px;
             text-align: center;
-            margin-bottom: 30px;
-            border-radius: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s ease-out;
         }
 
         .navbar-link {
             color: #ffffff;
-            padding: 15px 20px;
+            padding: 10px 15px;
             text-decoration: none;
-            font-size: 18px;
-            border-radius: 8px;
+            font-size: 1.1em;
+            border-radius: 6px;
             transition: background-color 0.3s ease, transform 0.2s ease;
             display: inline-block;
-            /* Ensures inline elements respect padding */
         }
 
         .navbar-link:hover {
             background-color: rgba(44, 62, 80, 0.9);
             transform: translateY(-2px);
-            /* Slight lift effect */
         }
 
         /* Logo */
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             animation: slideIn 0.8s ease-out;
         }
 
@@ -83,11 +120,11 @@
 
         .logo img {
             display: block;
-            max-width: 350px;
-            width: 100%;
+            max-width: 250px;
+            width: 80%;
             height: auto;
             margin: 0 auto;
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
@@ -99,72 +136,35 @@
         /* Container */
         .container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 40px;
+            margin: 20px auto;
+            padding: 20px;
             background-color: rgba(255, 255, 255, 0.05);
-            /* Translucent white */
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             animation: fadeIn 1.2s ease-out;
-        }
-
-        h1 {
-            text-align: center;
-            color: #e67e22;
-            /* Vibrant orange */
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.6s ease-out;
-        }
-
-        h2 {
-            color: #f39c12;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f39c12;
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            margin-top: 25px;
-            color: #ecf0f1;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-        }
-
-        h4 {
-            color: #e74c3c;
-            /* Red for sub-headings */
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #e74c3c;
-            padding-bottom: 8px;
+            box-sizing: border-box;
         }
 
         /* Table Styles */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
             overflow: hidden;
-            /* Ensures rounded corners are visible */
-            background-color: rgba(255, 255, 255, 0.03);
-            /* Slightly transparent background */
         }
 
         th,
         td {
-            padding: 15px 20px;
+            padding: 10px 12px;
             text-align: left;
             border-bottom: 1px solid rgba(236, 240, 241, 0.1);
-            /* Light border color */
         }
 
         th {
             background: linear-gradient(to bottom, #546e7a, #455a64);
-            /* Darker header */
             color: #fff;
             font-weight: bold;
             text-transform: uppercase;
@@ -191,24 +191,21 @@
         .dropdown {
             position: relative;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .dropdown-btn {
             background-color: #3498db;
             color: white;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border: none;
             cursor: pointer;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s ease, transform 0.2s ease;
-            font-size: 16px;
-            /* Larger font for better readability */
+            font-size: 0.9em;
             text-transform: uppercase;
-            /* Add text transformation */
             letter-spacing: 0.5px;
-            /* Add letter spacing */
         }
 
         .dropdown-btn:hover {
@@ -220,13 +217,11 @@
             display: none;
             position: absolute;
             background-color: rgba(52, 73, 94, 0.9);
-            /* Darker background */
-            min-width: 200px;
-            /* Wider dropdown */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            padding: 15px;
+            min-width: 160px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            padding: 12px;
             z-index: 1;
-            border-radius: 10px;
+            border-radius: 8px;
             right: 0;
             top: 100%;
         }
@@ -238,10 +233,10 @@
 
         .dropdown-content a {
             color: #ffffff;
-            padding: 10px 12px;
+            padding: 8px 10px;
             text-decoration: none;
             display: block;
-            border-radius: 5px;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
         }
 
@@ -252,7 +247,7 @@
         /* Section Visibility */
         .content-section {
             display: none;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .content-section:target {
@@ -263,13 +258,81 @@
         /* Footer Styles */
         .footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background-color: rgba(52, 73, 94, 0.8);
             color: #ffffff;
-            border-radius: 10px;
-            margin-top: 40px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s ease-out;
+            font-size: 0.9em;
+        }
+
+        /* Media Query for smaller screens (phones) */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em; /* Smaller heading on phones */
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-size: 1.4em;
+                margin-top: 30px;
+                margin-bottom: 15px;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            h4 {
+                font-size: 1em;
+            }
+
+            p,
+            a,
+            li,
+            label,
+            button {
+                font-size: 0.9em; /* Slightly smaller text */
+            }
+
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .navbar-link {
+                padding: 8px 12px;
+                font-size: 1em;
+            }
+
+            .logo img {
+                max-width: 180px; /* Smaller logo */
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+                font-size: 0.8em;
+            }
+
+            .dropdown-btn {
+                padding: 8px 14px;
+                font-size: 0.8em;
+            }
+
+            .dropdown-content {
+                min-width: 140px;
+                padding: 10px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -286,7 +349,6 @@
 
     <!-- Logo Section -->
     <div class="logo">
-        
         
     </div>
 
@@ -581,12 +643,14 @@
                         <td>2</td>
                         <td>--</td>
                         <td>--</td>
+                        
                         <td><a href="#">Proof Image</a></td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>--</td>
                         <td>--</td>
+                        
                         <td><a href="#">Proof Image</a></td>
                     </tr>
                 </tbody>
@@ -613,12 +677,14 @@
                         <td>2</td>
                         <td>--</td>
                         <td>--</td>
+                        
                         <td><a href="#">Proof Image</a></td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>--</td>
                         <td>--</td>
+                        
                         <td><a href="#">Proof Image</a></td>
                     </tr>
                 </tbody>
@@ -1318,6 +1384,8 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
