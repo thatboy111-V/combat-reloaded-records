@@ -1,270 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combat Reloaded - Records</title>
     <style>
+        /* General Styles */
         body {
-            font-family: sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            color: #ecf0f1;
+            /* Light text color */
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
         }
 
-        h1 {
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header & Navigation */
+        .navbar {
+            background-color: rgba(52, 73, 94, 0.8);
+            /* Semi-transparent navbar */
+            padding: 20px 30px;
             text-align: center;
-            color: #f16507;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
         }
 
-        h2 {
-            color: #f16507;
-            margin-top: 30px;
-        }
-
-        h3 {
-            margin-top: 20px;
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
+        .navbar-link {
+            color: #ffffff;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            /* Ensures inline elements respect padding */
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+        .navbar-link:hover {
+            background-color: rgba(44, 62, 80, 0.9);
+            transform: translateY(-2px);
+            /* Slight lift effect */
         }
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
+        /* Logo */
         .logo {
-            text-align: center; /* Center the logo */
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideIn 0.8s ease-out;
         }
 
         .logo a {
-            display: inline-block; /* Remove extra box around the link */
-            text-decoration: none; /* Remove underline */
+            display: inline-block;
         }
 
         .logo img {
             display: block;
-            max-width: 300px; /* Adjust the max-width */
-            width: 100%; /* Make the image responsive */
-            height: 160px;
-            margin: 0 auto; /* Center the image */
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        .footer {
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            /* Translucent white */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h1 {
             text-align: center;
-            margin-top: 30px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
+            color: #e67e22;
+            /* Vibrant orange */
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        h2 {
+            color: #f39c12;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
         }
 
         h4 {
-            color: #dc3545; /* Red color for headings */
-            margin-top: 25px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #dc3545; /* Red underline */
-            padding-bottom: 5px;
+            color: #e74c3c;
+            /* Red for sub-headings */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 8px;
         }
 
-        /* Style the links for proof */
-        a {
-            color: #007bff;
-            text-decoration: none; /* Removes underline */
-        }
-
-        a:hover {
-            text-decoration: underline; /* Adds underline on hover for better UX */
-        }
-
-        /* Improve table readability */
+        /* Table Styles */
         table {
             width: 100%;
-            border-collapse: collapse; /* Ensures borders collapse into a single border */
-            margin-top: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.075); /* Subtle shadow for depth */
-            border-radius: 5px;
-            overflow: hidden; /* Ensures the shadow and border-radius are applied correctly */
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            /* Ensures rounded corners are visible */
+            background-color: rgba(255, 255, 255, 0.03);
+            /* Slightly transparent background */
         }
 
-        th, td {
-            padding: 12px 15px;
+        th,
+        td {
+            padding: 15px 20px;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0; /* Lighter border color */
+            border-bottom: 1px solid rgba(236, 240, 241, 0.1);
+            /* Light border color */
         }
 
         th {
-    background: linear-gradient(to bottom, 
-                                #696868 0%,  /* Start green at 0% */
-                                #3b3c3b 50%, /* Darker green at 50% */
-                                #848584 100%); /* Even darker green at 100% */
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+            background: linear-gradient(to bottom, #546e7a, #455a64);
+            /* Darker header */
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         tbody tr:hover {
-            background-color: #f5f5f5; /* Light grey background on hover */
+            background-color: rgba(255, 255, 255, 0.07);
         }
 
-        /* Add some spacing and style to the container */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for the container */
+        /* Link Styles */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        /* Style the footer */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #343a40; /* Dark background for the footer */
-            color: #fff;
-            border-radius: 5px;
-            margin-top: 40px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow at the top of the footer */
-        }
-                /* Dropdown styles */
-                .dropdown {
-            position: relative;
-            display: inline-block;
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
         }
 
-        /* Dropdown styles */
+        /* Dropdown Styles */
         .dropdown {
             position: relative;
             display: inline-block;
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease; /* Smooth transition */
+            margin-bottom: 20px;
         }
 
-        .dropdown:hover {
-            background-color: #388E3C; /* Darker green on hover */
+        .dropdown-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 16px;
+            /* Larger font for better readability */
+            text-transform: uppercase;
+            /* Add text transformation */
+            letter-spacing: 0.5px;
+            /* Add letter spacing */
+        }
+
+        .dropdown-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            padding: 12px 16px;
+            background-color: rgba(52, 73, 94, 0.9);
+            /* Darker background */
+            min-width: 200px;
+            /* Wider dropdown */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            padding: 15px;
             z-index: 1;
-            border-radius: 5px;
-            right: 0; /* Aligns dropdown to the right */
+            border-radius: 10px;
+            right: 0;
+            top: 100%;
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
+            animation: fadeIn 0.3s ease-out;
         }
 
         .dropdown-content a {
-            color: black;
-            padding: 8px 10px;
+            color: #ffffff;
+            padding: 10px 12px;
             text-decoration: none;
             display: block;
-            border-radius: 3px;
-             transition: background-color 0.3s ease;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
+            background-color: rgba(44, 62, 80, 0.9);
         }
 
+        /* Section Visibility */
         .content-section {
-            display: none; /* Initially hide all sections */
-            margin-top: 20px;
+            display: none;
+            margin-top: 30px;
         }
 
         .content-section:target {
-            display: block; /* Show the selected section */
+            display: block;
+            animation: slideIn 0.5s ease-out;
         }
-        /* Navbar Styles */
-.navbar {
-    background-color: #333;
-    padding: 15px 20px; /* Increased padding */
-    text-align: center;
-    margin-bottom: 20px; /* Added spacing below navbar */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    max-width: 1200px; /* Match container width */
-    margin-left: auto;
-    margin-right: auto;
-    font-family: sans-serif; /* Inherit body font */
-}
 
-.navbar-link {
-    color: white;
-    padding: 12px 15px; /* Adjusted padding */
-    text-decoration: none;
-    font-size: 16px; /* Consistent font size */
-    border-radius: 5px; /* Rounded corners for links */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.navbar-link:hover {
-    background-color: #555; /* Darker background on hover */
-}
-
-
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background-color: rgba(52, 73, 94, 0.8);
+            color: #ffffff;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="#" class="navbar-link">Home</a>
         <a href="https://discord.com/invite/x94HXt6nyR" class="navbar-link" target="_blank">Discord</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmerCq9lD7pyiLHYSENakQgpUYYpn3liElvE6rEXBfYNVVfg/viewform?usp=sharing" class="navbar-link" target="_blank">Request Record Update</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmerCq9lD7pyiLHYSENakQgpUYYpn3liElvE6rEXBfYNVVfg/viewform?usp=sharing"
+            class="navbar-link" target="_blank">Request Record Update</a>
     </nav>
 
+    <!-- Logo Section -->
     <div class="logo">
-        <a href="images.png">
-            <img src="images.png" alt="Combat Reloaded Logo">
-        </a>
+        
+        
     </div>
-    
+
+    <!-- Main Content Container -->
     <div class="container">
-        <br>
-<br>
-        <h2>Best Records</h2>
+
+        <h1>Combat Reloaded - Records</h1>
+
+        <!-- Record Category Dropdown -->
         <div class="dropdown">
-            <span>Select Record Category</span>
+            <button class="dropdown-btn">Select Record Category</button>
             <div class="dropdown-content">
                 <a href="#overall-scores">Overall Highest Scores</a>
                 <a href="#ping-kd">Lowest Ping & Best K/D Ratio</a>
                 <a href="#zero-deaths">Highest Scores with Zero Deaths</a>
             </div>
         </div>
-        
+
+        <!-- Overall Highest Scores Section -->
         <section id="overall-scores" class="content-section">
             <h2>Overall Highest Scores</h2>
+
             <h3>DM - Deathmatch</h3>
             <table>
                 <thead>
@@ -277,13 +321,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>HEADSPLIT</td><td>174</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/Zy4CmIc">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>CSTSei</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>kennalanae</td><td>158</td><td>15th Nov 2024</td><td><a href="https://imgur.com/a/VRdLEAE">Proof Image</a></td></tr>
-        
+                    <tr>
+                        <td>1</td>
+                        <td>HEADSPLIT</td>
+                        <td>174</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/Zy4CmIc" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CSTSei</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>kennalanae</td>
+                        <td>158</td>
+                        <td>15th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/VRdLEAE" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>TDM - Team Deathmatch (Individual)</h3>
             <table>
                 <thead>
@@ -296,13 +357,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>Are U Scared Yet</td><td>148</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/Zy4CmIc">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>CSTSei</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>---</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-        
+                    <tr>
+                        <td>1</td>
+                        <td>Are U Scared Yet</td>
+                        <td>148</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/Zy4CmIc" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CSTSei</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>---</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Hidden</h3>
             <table>
                 <thead>
@@ -315,13 +393,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>Salonyyyyy</td><td>2003</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/aZfi5V0">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>kennalanae</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>--</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-        
+                    <tr>
+                        <td>1</td>
+                        <td>Salonyyyyy</td>
+                        <td>2003</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/aZfi5V0" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>kennalanae</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Sniper</h3>
             <table>
                 <thead>
@@ -334,13 +429,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>HEADSPLIT</td><td>165</td><td>21st Feb 2025</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>HEADSPLIT</td><td>119</td><td>10th Jan 2025</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>--</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-        
+                    <tr>
+                        <td>1</td>
+                        <td>HEADSPLIT</td>
+                        <td>165</td>
+                        <td>21st Feb 2025</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>HEADSPLIT</td>
+                        <td>119</td>
+                        <td>10th Jan 2025</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>TDM - Team Deathmatch (Team Score)</h3>
             <table>
                 <thead>
@@ -353,13 +465,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>Blue Team (Map - Sniper) -</td><td>189</td><td>22nd Nov 2024</td><td><a href="https://imgur.com/a/k0RQGZY">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>--</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>--</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-        
+                    <tr>
+                        <td>1</td>
+                        <td>Blue Team (Map - Sniper) -</td>
+                        <td>189</td>
+                        <td>22nd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/k0RQGZY" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Rocket</h3>
             <table>
                 <thead>
@@ -372,10 +501,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>--</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Bomb</h3>
             <table>
                 <thead>
@@ -388,10 +523,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>vidun1</td><td>300</td><td>26th Jan 2025</td><td><a href="https://imgur.com/a/NKvTiVd">Proof Image</a></td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>vidun1</td>
+                        <td>300</td>
+                        <td>26th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/NKvTiVd" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Zombie</h3>
             <table>
                 <thead>
@@ -404,14 +545,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>XTRACTION</td><td>130</td><td>11th Nov 2024</td><td><a href="https://imgur.com/a/VfYGISH">Proof Image</a></td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>XTRACTION</td>
+                        <td>130</td>
+                        <td>11th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/VfYGISH" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-        
+
+        <!-- Lowest Ping & Best K/D Ratio Section -->
         <section id="ping-kd" class="content-section">
             <h2>Lowest Ping & Best K/D Ratio</h2>
-        
+
             <h3>Lowest Ping</h3>
             <table>
                 <thead>
@@ -423,12 +571,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>PrimeVideo</td><td>16</td><td><a href="https://imgur.com/a/vX4fQEL">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>PrimeVideo</td>
+                        <td>16</td>
+                        <td><a href="https://imgur.com/a/vX4fQEL" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-        
+
             <h3>Best K/D Ratio</h3>
             <table>
                 <thead>
@@ -440,13 +603,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>HEADSPLIT</td><td>174/0</td><td><a href="https://imgur.com/a/Zy4CmIc">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>--</td><td>--</td><td><a href="#">Proof Image</a></td>
+                    <tr>
+                        <td>1</td>
+                        <td>HEADSPLIT</td>
+                        <td>174/0</td>
+                        <td><a href="https://imgur.com/a/Zy4CmIc" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-        
+
+        <!-- Highest Scores with Zero Deaths Section -->
         <section id="zero-deaths" class="content-section">
             <h2>Highest Scores with Zero Deaths</h2>
             <table>
@@ -460,32 +639,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>HEADSPLIT</td><td>174</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/Zy4CmIc">Proof Image</a></td></tr>
-                    <tr><td>2</td><td>thatboy111</td><td>137</td><td>18th Feb 2025</td><td><a href="#">Proof Image</a></td></tr>
-                    <tr><td>3</td><td>HEADSPLIT</td><td>119</td><td>10th Jan 2025</td><td><a href="#">Proof Image</a></td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>HEADSPLIT</td>
+                        <td>174</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/Zy4CmIc" target="_blank">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>thatboy111</td>
+                        <td>137</td>
+                        <td>18th Feb 2025</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>HEADSPLIT</td>
+                        <td>119</td>
+                        <td>10th Jan 2025</td>
+                        <td><a href="#">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
 
-        <br>
-        <br>
+        <!-- Highest Scores per Map Section -->
         <h2>Highest Scores per Map</h2>
 
-
-        <!-- Dropdown Menu -->
+        <!-- Map Mode Dropdown -->
         <div class="dropdown">
-            <span>----------Select Mode----------</span>
+            <button class="dropdown-btn">Select Mode</button>
             <div class="dropdown-content">
                 <a href="#dm-deathmatch">DM - Deathmatch</a>
                 <a href="#tdm-individual">TDM - Individual</a>
                 <a href="#tdm-team">TDM - Team</a>
             </div>
         </div>
-    
-        <!-- Content Sections -->
-    
+
+        <!-- DM - Deathmatch Section -->
         <section id="dm-deathmatch" class="content-section">
             <h3>DM - Deathmatch</h3>
+
             <h4>4 Towers</h4>
             <table>
                 <thead>
@@ -493,15 +688,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
-    
+
             <h4>Adoz</h4>
             <table>
                 <thead>
@@ -509,15 +708,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>skystriker</td><td>72</td><td>4th Dec 2024</td><td><a href="https://imgur.com/a/404rY5K">Proof Image</a></td></tr>
+                    <tr>
+                        <td>skystriker</td>
+                        <td>72</td>
+                        <td>4th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/404rY5K" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-    
+
             <h4>Backgammon</h4>
             <table>
                 <thead>
@@ -525,14 +728,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>120</td><td>24th Nov 2024</td><td><a href="https://imgur.com/a/Yu4c2km">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>120</td>
+                        <td>24th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/Yu4c2km" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Cube City</h4>
             <table>
                 <thead>
@@ -540,14 +748,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Football</h4>
             <table>
                 <thead>
@@ -555,14 +768,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>kennalanae</td><td>158</td><td>15th Nov 2024</td><td><a href="https://imgur.com/a/VRdLEAE">Proof Image</a></td></tr>
+                    <tr>
+                        <td>kennalanae</td>
+                        <td>158</td>
+                        <td>15th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/VRdLEAE" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Hang Em High</h4>
             <table>
                 <thead>
@@ -570,14 +788,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>122</td><td>1st Jan 2025</td><td><a href="https://imgur.com/a/qQw3SIK">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>122</td>
+                        <td>1st Jan 2025</td>
+                        <td><a href="https://imgur.com/a/qQw3SIK" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>India</h4>
             <table>
                 <thead>
@@ -585,14 +808,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>101</td><td>18th Dec 2024</td><td><a href="https://imgur.com/a/KeVfaXi">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>101</td>
+                        <td>18th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/KeVfaXi" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Infiltration</h4>
             <table>
                 <thead>
@@ -600,14 +828,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                     <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Kano</h4>
             <table>
                 <thead>
@@ -615,14 +848,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Krusty Krab</h4>
             <table>
                 <thead>
@@ -630,14 +868,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>99</td><td>24th Oct 2024</td><td><a href="https://imgur.com/a/5TO27II">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>99</td>
+                        <td>24th Oct 2024</td>
+                        <td><a href="https://imgur.com/a/5TO27II" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares</h4>
             <table>
                 <thead>
@@ -645,44 +888,59 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>116</td><td>31st Dec 2024</td><td><a href="https://imgur.com/a/mwkRxSn">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>116</td>
+                        <td>31st Dec 2024</td>
+                        <td><a href="https://imgur.com/a/mwkRxSn" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>106</td><td>22nd Dec 2024</td><td><a href="https://imgur.com/a/qiG0K3K">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>106</td>
+                        <td>22nd Dec 2024</td>
+                        <td><a href="https://imgur.com/a/qiG0K3K" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 3</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>104</td><td>20th Nov 2024</td><td><a href="https://imgur.com/a/ykY4UIR">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>104</td>
+                        <td>20th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/ykY4UIR" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 4</h4>
             <table>
                 <thead>
@@ -690,14 +948,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>114</td><td>16th Nov 2024</td><td><a href="https://imgur.com/a/vLI9Wa5">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>114</td>
+                        <td>16th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/vLI9Wa5" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 5</h4>
             <table>
                 <thead>
@@ -705,74 +968,99 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>IzhaaarAli</td><td>124</td><td>27th Sep 2024</td><td><a href="https://imgur.com/a/eAiDY1Z">Proof Image</a></td></tr>
+                    <tr>
+                        <td>IzhaaarAli</td>
+                        <td>124</td>
+                        <td>27th Sep 2024</td>
+                        <td><a href="https://imgur.com/a/eAiDY1Z" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Machu Pichu</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Nova001</td><td>106</td><td>18th Feb 2025</td><td><a href="https://www.youtube.com/watch?v=p81jDezJKfI">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Nova001</td>
+                        <td>106</td>
+                        <td>18th Feb 2025</td>
+                        <td><a href="https://www.youtube.com/watch?v=p81jDezJKfI" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Mansion</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>133</td><td>21st Nov 2024</td><td><a href="https://imgur.com/a/YmGzPIF">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>133</td>
+                        <td>21st Nov 2024</td>
+                        <td><a href="https://imgur.com/a/YmGzPIF" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>THE ANNUNAKI</td><td>72</td><td>28th Nov 2024</td><td><a href="https://imgur.com/a/OCSXGVr">Proof Image</a></td></tr>
+                    <tr>
+                        <td>THE ANNUNAKI</td>
+                        <td>72</td>
+                        <td>28th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/OCSXGVr" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>98</td><td>31st Dec 2024</td><td><a href="https://imgur.com/a/xt6BP6A">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>98</td>
+                        <td>31st Dec 2024</td>
+                        <td><a href="https://imgur.com/a/xt6BP6A" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 3</h4>
             <table>
                 <thead>
@@ -780,14 +1068,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 4</h4>
             <table>
                 <thead>
@@ -795,44 +1088,59 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Nova001</td><td>86</td><td>16th Feb 2025</td><td><a href="https://www.youtube.com/watch?v=urCmxEx7CTU">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Nova001</td>
+                        <td>86</td>
+                        <td>16th Feb 2025</td>
+                        <td><a href="https://www.youtube.com/watch?v=urCmxEx7CTU" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Minecraft 5</h4>
+
+            <h4>Minecraft 5</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>kennalanae</td><td>127</td><td>13th Nov 2024</td><td><a href="https://imgur.com/a/NNnrkFR">Proof Image</a></td></tr>
+                    <tr>
+                        <td>kennalanae</td>
+                        <td>127</td>
+                        <td>13th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/NNnrkFR" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Orbita</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>HEADSPLIT</td><td>174</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/Zy4CmIc">Proof Image</a></td></tr>
+                    <tr>
+                        <td>HEADSPLIT</td>
+                        <td>174</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/Zy4CmIc" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Sniper</h4>
             <table>
                 <thead>
@@ -840,29 +1148,39 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>115</td><td>1st Jan 2025</td><td><a href="https://imgur.com/a/K5HkqxQ">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>115</td>
+                        <td>1st Jan 2025</td>
+                        <td><a href="https://imgur.com/a/K5HkqxQ" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Toon Castles</h4>
+
+            <h4>Toon Castles</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>124</td><td>31st Dec 2024</td><td><a href="https://imgur.com/a/wMtNud9">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>124</td>
+                        <td>31st Dec 2024</td>
+                        <td><a href="https://imgur.com/a/wMtNud9" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Toon Ramps</h4>
             <table>
                 <thead>
@@ -870,14 +1188,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>124</td><td>16th Nov 2024</td><td><a href="https://imgur.com/a/93oj1DL">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>124</td>
+                        <td>16th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/93oj1DL" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Vacation</h4>
             <table>
                 <thead>
@@ -885,14 +1208,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>kennalanae</td><td>138</td><td>13th Nov 2024</td><td><a href="https://imgur.com/a/RiOufBI">Proof Image</a></td></tr>
+                    <tr>
+                        <td>kennalanae</td>
+                        <td>138</td>
+                        <td>13th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/RiOufBI" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Warfield</h4>
             <table>
                 <thead>
@@ -900,17 +1228,24 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>kennalanae</td><td>144</td><td>16th Nov 2024</td><td><a href="https://imgur.com/a/7qP7YPB">Proof Image</a></td></tr>
+                    <tr>
+                        <td>kennalanae</td>
+                        <td>144</td>
+                        <td>16th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/7qP7YPB" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-    
+
+        <!-- TDM - Team Deathmatch (Individual Score) Section -->
         <section id="tdm-individual" class="content-section">
             <h3>TDM - Team Deathmatch (Individual Score)</h3>
+
             <h4>4 Towers</h4>
             <table>
                 <thead>
@@ -918,14 +1253,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>IzhaaarAli</td><td>71</td><td>2nd Oct 2024</td><td><a href="https://imgur.com/a/NfVWCPc">Proof Image</a></td></tr>
+                    <tr>
+                        <td>IzhaaarAli</td>
+                        <td>71</td>
+                        <td>2nd Oct 2024</td>
+                        <td><a href="https://imgur.com/a/NfVWCPc" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Adoz</h4>
             <table>
                 <thead>
@@ -933,14 +1273,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Backgammon</h4>
             <table>
                 <thead>
@@ -948,14 +1293,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Cube City</h4>
             <table>
                 <thead>
@@ -963,14 +1313,17 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Football</h4>
             <table>
                 <thead>
@@ -978,14 +1331,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>133</td><td>20th Nov 2024</td><td><a href="https://imgur.com/a/SRA9KTq">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>133</td>
+                        <td>20th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/SRA9KTq" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Hang Em High</h4>
             <table>
                 <thead>
@@ -993,14 +1351,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Christian143</td><td>93</td><td>13th Jan 2024</td><td><a href="https://imgur.com/a/ELebNST">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Christian143</td>
+                        <td>93</td>
+                        <td>13th Jan 2024</td>
+                        <td><a href="https://imgur.com/a/ELebNST" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>India</h4>
             <table>
                 <thead>
@@ -1008,14 +1371,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>91</td><td>20th Dec 2024</td><td><a href="https://imgur.com/a/IfQ0yTf">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>91</td>
+                        <td>20th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/IfQ0yTf" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Infiltration</h4>
             <table>
                 <thead>
@@ -1023,14 +1391,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Kano</h4>
             <table>
                 <thead>
@@ -1038,14 +1411,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>kennalanae</td><td>109</td><td>18th Nov 2024</td><td><a href="https://imgur.com/a/ZpUBHZS">Proof Image</a></td></tr>
+                    <tr>
+                        <td>kennalanae</td>
+                        <td>109</td>
+                        <td>18th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/ZpUBHZS" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Krusty Krab</h4>
             <table>
                 <thead>
@@ -1053,14 +1431,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>102</td><td>20th Dec 2024</td><td><a href="https://imgur.com/a/ALVVuZ3">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>102</td>
+                        <td>20th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/ALVVuZ3" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares</h4>
             <table>
                 <thead>
@@ -1068,44 +1451,59 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>JamesBond 007</td><td>59</td><td>7th Feb 2025</td><td><a href="https://imgur.com/a/hDZsKdX">Proof Image</a></td></tr>
+                    <tr>
+                        <td>JamesBond 007</td>
+                        <td>59</td>
+                        <td>7th Feb 2025</td>
+                        <td><a href="https://imgur.com/a/hDZsKdX" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>118</td><td>23rd Nov 2024</td><td><a href="https://imgur.com/a/wtmm9TL">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>118</td>
+                        <td>23rd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/wtmm9TL" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 3</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>102</td><td>3rd Jan 2025</td><td><a href="https://imgur.com/a/XNGHEA6">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>102</td>
+                        <td>3rd Jan 2025</td>
+                        <td><a href="https://imgur.com/a/XNGHEA6" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 4</h4>
             <table>
                 <thead>
@@ -1113,14 +1511,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>72</td><td>18th Dec 2024</td><td><a href="https://imgur.com/a/xgXFqx9">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>72</td>
+                        <td>18th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/xgXFqx9" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 5</h4>
             <table>
                 <thead>
@@ -1128,74 +1531,99 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Machu Pichu</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>IzhaaarAli</td><td>68</td><td>19th Nov 2024</td><td><a href="https://imgur.com/a/tqwpmTY">Proof Image</a></td></tr>
+                    <tr>
+                        <td>IzhaaarAli</td>
+                        <td>68</td>
+                        <td>19th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/tqwpmTY" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Mansion</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Christian143</td><td>77</td><td>8th Jan 2025</td><td><a href="https://imgur.com/a/ZyBsR9L">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Christian143</td>
+                        <td>77</td>
+                        <td>8th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/ZyBsR9L" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>IG11</td><td>55</td><td>15th Dec 2024</td><td><a href="https://imgur.com/a/BQxk6Qg">Proof Image</a></td></tr>
+                    <tr>
+                        <td>IG11</td>
+                        <td>55</td>
+                        <td>15th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/BQxk6Qg" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION/kennalanae</td><td>89</td><td>20th Jan 2025</td><td><a href="https://imgur.com/a/RCfh48B">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION/kennalanae</td>
+                        <td>89</td>
+                        <td>20th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/RCfh48B" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 3</h4>
             <table>
                 <thead>
@@ -1203,14 +1631,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>thatboy111</td><td>96</td><td>25th Dec 2024</td><td><a href="https://imgur.com/a/hCz5tK2">Proof Image</a></td></tr>
+                    <tr>
+                        <td>thatboy111</td>
+                        <td>96</td>
+                        <td>25th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/hCz5tK2" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 4</h4>
             <table>
                 <thead>
@@ -1218,44 +1651,59 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>vidun1</td><td>110</td><td>24th Sep 2024</td><td><a href="https://imgur.com/a/NaOOURU">Proof Image</a></td></tr>
+                    <tr>
+                        <td>vidun1</td>
+                        <td>110</td>
+                        <td>24th Sep 2024</td>
+                        <td><a href="https://imgur.com/a/NaOOURU" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Minecraft 5</h4>
+
+            <h4>Minecraft 5</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>118</td><td>1st Jan 2025</td><td><a href="https://imgur.com/a/KJ37EQU">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>118</td>
+                        <td>1st Jan 2025</td>
+                        <td><a href="https://imgur.com/a/KJ37EQU" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Orbita</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>133</td><td>19th Nov 2024</td><td><a href="https://imgur.com/a/KVlF15A">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>133</td>
+                        <td>19th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/KVlF15A" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Sniper</h4>
             <table>
                 <thead>
@@ -1263,29 +1711,39 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>XTRACTION</td><td>98</td><td>22nd Nov 2024</td><td><a href="https://imgur.com/a/k0RQGZY">Proof Image</a></td></tr>
+                    <tr>
+                        <td>XTRACTION</td>
+                        <td>98</td>
+                        <td>22nd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/k0RQGZY" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Toon Castles</h4>
+
+            <h4>Toon Castles</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>JamesBond 007</td><td>72</td><td>25th Nov 2024</td><td><a href="https://imgur.com/a/CJFXjxK">Proof Image</a></td></tr>
+                    <tr>
+                        <td>JamesBond 007</td>
+                        <td>72</td>
+                        <td>25th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/CJFXjxK" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Toon Ramps</h4>
             <table>
                 <thead>
@@ -1293,14 +1751,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Vacation</h4>
             <table>
                 <thead>
@@ -1308,14 +1771,19 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Are U Scared Yet</td><td>148</td><td>11th Jan 2025</td><td><a href="https://imgur.com/a/fF7U7OQ">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Are U Scared Yet</td>
+                        <td>148</td>
+                        <td>11th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/fF7U7OQ" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Warfield</h4>
             <table>
                 <thead>
@@ -1323,441 +1791,590 @@
                         <th>Player</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>CSTSei</td><td>120</td><td>19th Nov 2024</td><td><a href="https://imgur.com/a/Q2KbYwA">Proof Image</a></td></tr>
+                    <tr>
+                        <td>CSTSei</td>
+                        <td>120</td>
+                        <td>19th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/Q2KbYwA" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-    
+
+        <!-- TDM - Team Deathmatch (Team Score) Section -->
         <section id="tdm-team" class="content-section">
             <h3>TDM - Team Deathmatch (Team Score)</h3>
+
             <h4>4 Towers</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>107</td><td>2nd Oct 2024</td><td><a href="https://imgur.com/a/NfVWCPc">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>107</td>
+                        <td>2nd Oct 2024</td>
+                        <td><a href="https://imgur.com/a/NfVWCPc" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Adoz</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                   <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Backgammon</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                   <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Cube City</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Football</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>183</td><td>3rd Oct 2024</td><td><a href="https://imgur.com/a/Tv23VPc">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>183</td>
+                        <td>3rd Oct 2024</td>
+                        <td><a href="https://imgur.com/a/Tv23VPc" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Hang Em High</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>167</td><td>22nd Nov 2023</td><td><a href="https://imgur.com/a/0iNxEk4">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>167</td>
+                        <td>22nd Nov 2023</td>
+                        <td><a href="https://imgur.com/a/0iNxEk4" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>India</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>152</td><td>5th Nov 2024</td><td><a href="https://imgur.com/a/hSJtMqX">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>152</td>
+                        <td>5th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/hSJtMqX" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Infiltration</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>118</td><td>22nd Feb 2025</td><td><a href="https://imgur.com/a/EauID2o">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>118</td>
+                        <td>22nd Feb 2025</td>
+                        <td><a href="https://imgur.com/a/EauID2o" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Kano</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>167</td><td>12th Aug 2024</td><td><a href="https://www.youtube.com/watch?v=6Lee3tAHxnQ">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>167</td>
+                        <td>12th Aug 2024</td>
+                        <td><a href="https://www.youtube.com/watch?v=6Lee3tAHxnQ" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Krusty Krab</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>143</td><td>20th Dec 2024</td><td><a href="https://imgur.com/a/ALVVuZ3">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>143</td>
+                        <td>20th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/ALVVuZ3" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>91</td><td>8th Oct 2024</td><td><a href="https://imgur.com/a/uRA0mn8">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>91</td>
+                        <td>8th Oct 2024</td>
+                        <td><a href="https://imgur.com/a/uRA0mn8" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>126</td><td>23rd Nov 2024</td><td><a href="https://imgur.com/a/wtmm9TL">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>126</td>
+                        <td>23rd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/wtmm9TL" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 3</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>127</td><td>3rd Jan 2025</td><td><a href="https://imgur.com/a/XNGHEA6">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>127</td>
+                        <td>3rd Jan 2025</td>
+                        <td><a href="https://imgur.com/a/XNGHEA6" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 4</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>140</td><td>21st Jul 2024</td><td><a href="https://imgur.com/a/ZkASHEZ">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>140</td>
+                        <td>21st Jul 2024</td>
+                        <td><a href="https://imgur.com/a/ZkASHEZ" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Lego Squares 5</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>143</td><td>22nd Jan 2025</td><td><a href="https://imgur.com/a/M5SE8af">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>143</td>
+                        <td>22nd Jan 2025</td>
+                        <td><a href="https://imgur.com/a/M5SE8af" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Machu Pichu</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>149</td><td>31st Jul 2024</td><td><a href="https://imgur.com/a/O6gsE3D">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>149</td>
+                        <td>31st Jul 2024</td>
+                        <td><a href="https://imgur.com/a/O6gsE3D" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Mansion</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>133</td><td>16th Nov 2024</td><td><a href="https://imgur.com/a/LPMtmIL">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>133</td>
+                        <td>16th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/LPMtmIL" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>146</td><td>2nd Nov 2024</td><td><a href="https://imgur.com/a/CHwe8TQ">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>146</td>
+                        <td>2nd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/CHwe8TQ" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 2</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>139</td><td>30th Jan 2025</td><td><a href="https://imgur.com/a/PnlsM3d">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>139</td>
+                        <td>30th Jan 2025</td>
+                        <td><a href="https://imgur.com/a/PnlsM3d" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 3</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>114</td><td>25th Dec 2024</td><td><a href="https://imgur.com/a/hCz5tK2">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>114</td>
+                        <td>25th Dec 2024</td>
+                        <td><a href="https://imgur.com/a/hCz5tK2" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Minecraft 4</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>129</td><td>24th Sep 2024</td><td><a href="https://imgur.com/a/NaOOURU">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>129</td>
+                        <td>24th Sep 2024</td>
+                        <td><a href="https://imgur.com/a/NaOOURU" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Minecraft 5</h4>
+
+            <h4>Minecraft 5</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>128</td><td>1st Jan 2025</td><td><a href="https://imgur.com/a/KJ37EQU">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>128</td>
+                        <td>1st Jan 2025</td>
+                        <td><a href="https://imgur.com/a/KJ37EQU" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Orbita</h4>
-             <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Red Team</td><td>153</td><td>24th Sep 2024</td><td><a href="https://imgur.com/a/vX4fQEL">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Red Team</td>
+                        <td>153</td>
+                        <td>24th Sep 2024</td>
+                        <td><a href="https://imgur.com/a/vX4fQEL" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Sniper</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>189</td><td>22nd Nov 2024</td><td><a href="https://imgur.com/a/k0RQGZY">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>189</td>
+                        <td>22nd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/k0RQGZY" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
-             <h4>Toon Castles</h4>
+
+            <h4>Toon Castles</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>132</td><td>22nd Nov 2024</td><td><a href="https://imgur.com/a/PrYdL9Y">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>132</td>
+                        <td>22nd Nov 2024</td>
+                        <td><a href="https://imgur.com/a/PrYdL9Y" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Toon Ramps</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Vacation</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>172</td><td>18th Feb 2025</td><td><a href="https://www.youtube.com/watch?v=Kibh37EIb-M">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>172</td>
+                        <td>18th Feb 2025</td>
+                        <td><a href="https://www.youtube.com/watch?v=Kibh37EIb-M" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
-    
+
             <h4>Warfield</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Team</th>
                         <th>Score</th>
                         <th>Date</th>
-                         <th>Proof</th>
+                        <th>Proof</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Blue Team</td><td>131</td><td>19th Nov 2024</td><td><a href="https://imgur.com/a/ojJTm4S">Proof Image</a></td></tr>
+                    <tr>
+                        <td>Blue Team</td>
+                        <td>131</td>
+                        <td>19th Nov 2024</td>
+                        <td><a href="https://imgur.com/a/ojJTm4S" target="_blank">Proof Image</a></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
+
+        <!-- Footer Section -->
         <footer class="footer">
             Created by Suraj Yadav
         </footer>
-    </body>
-    </html>
-    
-        
+    </div> <!-- Close Container -->
+</body>
+
+</html>
